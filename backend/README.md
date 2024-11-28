@@ -1,4 +1,4 @@
-### Lost & Found UOK API
+### Task Manager API
 
 ## Installation
 
@@ -17,20 +17,13 @@ Create a .env file in the root directory and refer to **.env.example**
 
 - [Login](#1-admin-login-post-request)
 
-### Employee
+### Post
 
-- [Add new Employee](#2-add-new-employee-post-request)
-- [Fetch all Employees](#3-fetch-all-employees-get-request)
-- [Get Employee](#4-get-employee-get-request)
-- [Update Employee](#5-update-employee-put-request)
-
-### Task
-
-- [Assign new Task](#6-assign-new-task-post-request)
-- [Fetch All Tasks](#7-fetch-all-tasks-get-request)
-- [Fetch Employee Tasks](#8-fetch-employee-tasks-get-request)
-- [Update Task](#9-update-task-put-request)
-- [Remove Task](#10-remove-task-delete-request)
+- [Add new Post](#2-add-new-post-post-request)
+- [Fetch all Posts](#3-fetch-all-posts-get-request)
+- [Get Post](#4-get-post-get-request)
+- [Update Post](#5-update-post-put-request)
+- [Delete Post](#6-delete-post-delete-request)
 
 ### 1. Admin Login: POST Request
 
@@ -102,325 +95,23 @@ Body
 
 ###
 
-### 2. Add new Employee: POST Request
+### 2. Add new Post: POST Request
 
 End Point
 
 ```
-/api/v1/employees/new
+/api/v1/posts/new
 ```
+
+Content-Type (multipart/form-data)
 
 Body
-
-```json
-{
-  "name": "String",
-  "phone": "String",
-  "isManager": "Boolean",
-  "email": "String"
-}
-```
-
-### Response
-
-<details>
-  <summary>201</summary>
-
-### Success
-
-```json
-{
-  "status": 201,
-  "message": "Employee Registered",
-  "data": {
-    "name": "String",
-    "phone": "String",
-    "isManager": "Boolean",
-    "email": "String",
-    "_id": "ID (String)",
-    "createdAt": "DATE (String)",
-    "updatedAt": "DATE (String)"
-  }
-}
-```
-
-</details>
-
-<details>
-  <summary>409</summary>
-
-### Conflict
-
-```json
-{
-  "status": 409,
-  "message": "Employee exists already",
-  "error": "CONFLICT_ERROR"
-}
-```
-
-</details>
-
-<details>
-  <summary>500</summary>
-
-### Error
-
-```json
-{
-  "status": 500,
-  "message": "Error",
-  "error": "SERVER_ERROR"
-}
-```
-
-</details>
-
-###
-
-### 3. Fetch all Employees: GET Request
-
-End Point
-
-```
-/api/v1/employees/all
-```
-
-### Response
-
-<details>
-  <summary>200</summary>
-
-### Success
-
-```json
-{
-  "status": 200,
-  "message": "All Employees",
-  "data": [
-    {
-      "_id": "String",
-      "name": "String",
-      "phone": "String",
-      "email": "String",
-      "isManager": "Boolean",
-      "createdAt": "DATE (String)",
-      "updatedAt": "DATE (String)"
-    }
-  ]
-}
-```
-
-</details>
-
-<details>
-  <summary>404</summary>
-
-### Not Found
-
-```json
-{
-  "status": 404,
-  "message": "No Employees Registered yet",
-  "error": "NOT_FOUND"
-}
-```
-
-</details>
-
-<details>
-  <summary>500</summary>
-
-### Error
-
-```json
-{
-  "status": 500,
-  "message": "Error",
-  "error": "SERVER_ERROR"
-}
-```
-
-</details>
-
-###
-
-### 4. Get Employee: GET Request
-
-End Point
-
-```
-/api/v1/employees/{employee_id}
-```
-
-### Response
-
-<details>
-  <summary>200</summary>
-
-### Success
-
-```json
-{
-  "status": 200,
-  "message": "Employee Details",
-  "data": [
-    {
-      "_id": "String",
-      "name": "String",
-      "phone": "String",
-      "email": "String",
-      "isManager": "Boolean",
-      "createdAt": "DATE (String)",
-      "updatedAt": "DATE (String)"
-    }
-  ]
-}
-```
-
-</details>
-
-<details>
-  <summary>404</summary>
-
-### Not Found
-
-```json
-{
-  "status": 404,
-  "message": "Employee does not exist",
-  "error": "NOT_FOUND"
-}
-```
-
-</details>
-
-<details>
-  <summary>500</summary>
-
-### Error
-
-```json
-{
-  "status": 500,
-  "message": "Error",
-  "error": "SERVER_ERROR"
-}
-```
-
-</details>
-
-###
-
-### 5. Update Employee: PUT Request
-
-End Point
-
-```
-/api/v1/employees/update/{employee_id}
-```
-
-Body
-
-```json
-{
-  "name": "String",
-  "phone": "String",
-  "isManager": "Boolean",
-  "email": "String"
-}
-```
-
-### Response
-
-<details>
-  <summary>200</summary>
-
-### Success
-
-```json
-{
-  "status": 200,
-  "message": "Employee Updated",
-  "data": [
-    {
-      "_id": "String",
-      "name": "String",
-      "phone": "String",
-      "email": "String",
-      "isManager": "Boolean",
-      "createdAt": "DATE (String)",
-      "updatedAt": "DATE (String)"
-    }
-  ]
-}
-```
-
-</details>
-
-<details>
-  <summary>404</summary>
-
-### Not Found
-
-```json
-{
-  "status": 404,
-  "message": "Employee does not exist",
-  "error": "NOT_FOUND"
-}
-```
-
-</details>
-
-<details>
-  <summary>409</summary>
-
-### Conflict
-
-```json
-{
-  "status": 409,
-  "message": "Employee with same email already exists",
-  "error": "CONFLICT_ERROR"
-}
-```
-
-</details>
-
-<details>
-  <summary>500</summary>
-
-### Error
-
-```json
-{
-  "status": 500,
-  "message": "Error",
-  "error": "SERVER_ERROR"
-}
-```
-
-</details>
-
-###
-
-### 6. Assign new Task: POST Request
-
-End Point
-
-```
-/api/v1/employees/update/{employee_id}
-```
-
-Body
-
 ```json
 {
   "title": "String",
-  "deadline": "Timestamp",
-  "employee": "Employee_ID",
-  "details": "String"
+  "description": "String",
+  "category": "String",
+  "image": "File"
 }
 ```
 
@@ -434,15 +125,13 @@ Body
 ```json
 {
   "status": 201,
-  "message": "Task assigned successfully",
+  "message": "Post Registered",
   "data": {
     "title": "String",
-    "details": "String",
-    "deadline": "Timestamp",
-    "employee": "Employee_ID",
-    "_id": "ID",
-    "createdAt": "DATE (String)",
-    "updatedAt": "DATE (String)"
+    "description": "String",
+    "imageUrl": "String",
+    "datePosted": "Number",
+    "id": "ID (String)",
   }
 }
 ```
@@ -450,30 +139,15 @@ Body
 </details>
 
 <details>
-  <summary>404</summary>
+  <summary>422</summary>
 
-### Not Found
-
-```json
-{
-  "status": 404,
-  "message": "Employee doesn't exist",
-  "error": "NOT_FOUND"
-}
-```
-
-</details>
-
-<details>
-  <summary>409</summary>
-
-### Conflict
+### Bad Request
 
 ```json
 {
-  "status": 409,
-  "message": "This task is already assigned to this user",
-  "error": "CONFLICT_ERROR"
+  "status": 422,
+  "message": "Validation Error Message",
+  "error": "VALIDATION_ERROR"
 }
 ```
 
@@ -496,12 +170,12 @@ Body
 
 ###
 
-### 7. Fetch all Tasks: GET Request
+### 3. Fetch all Posts: GET Request
 
 End Point
 
 ```
-/api/v1/tasks/all
+/api/v1/posts/all
 ```
 
 ### Response
@@ -514,21 +188,17 @@ End Point
 ```json
 {
   "status": 200,
-  "message": "All Tasks",
+  "message": "All Posts",
   "data": [
     {
-      "_id": "ID",
+      "_id": "String",
       "title": "String",
-      "details": "String",
-      "deadline": "Timestamp",
-      "employee": {
-        "_id": "Employee_ID",
-        "name": "String",
-        "email": "String",
-        "isManager": "Boolean"
-      },
-      "createdAt": "Date (String)",
-      "updatedAt": "Date (String)"
+      "description": "String",
+      "imageUrl": "String",
+      "category": "String",
+      "datePosted": "Number",
+      "createdAt": "DATE (String)",
+      "updatedAt": "DATE (String)"
     }
   ]
 }
@@ -544,7 +214,7 @@ End Point
 ```json
 {
   "status": 404,
-  "message": "No tasks data found",
+  "message": "No Posts found",
   "error": "NOT_FOUND"
 }
 ```
@@ -568,12 +238,12 @@ End Point
 
 ###
 
-### 8. Fetch Employee Tasks: GET Request
+### 4. Get Post: GET Request
 
 End Point
 
 ```
-/api/v1/tasks/for/{employee_id}
+/api/v1/posts/:id
 ```
 
 ### Response
@@ -586,24 +256,14 @@ End Point
 ```json
 {
   "status": 200,
-  "message": "All Tasks",
+  "message": "Post Details",
   "data": {
-    "employee": {
-      "_id": "ID",
-      "name": "String",
-      "email": "String",
-      "isManager": "Boolean"
-    },
-    "tasks": [
-      {
-        "_id": "String",
-        "title": "String",
-        "details": "String",
-        "deadline": "Timestamp",
-        "createdAt": "Date (String)",
-        "updatedAt": "Date (String)"
-      }
-    ]
+    "id": "String",
+    "title": "String",
+    "description": "String",
+    "category": "String",
+    "imageUrl": "String",
+    "datePosted": "Number",
   }
 }
 ```
@@ -611,29 +271,14 @@ End Point
 </details>
 
 <details>
-  <summary>404 (Tasks)</summary>
+  <summary>404</summary>
 
 ### Not Found
 
 ```json
 {
   "status": 404,
-  "message": "No tasks data found",
-  "error": "NOT_FOUND"
-}
-```
-
-</details>
-
-<details>
-  <summary>404 (Employee)</summary>
-
-### Not Found
-
-```json
-{
-  "status": 404,
-  "message": "Employee doesn't exist",
+  "message": "Post does not exist",
   "error": "NOT_FOUND"
 }
 ```
@@ -657,42 +302,44 @@ End Point
 
 ###
 
-### 9. Update Task: PUT Request
+### 5. Update Post: PUT Request
 
 End Point
 
 ```
-/api/v1/tasks/update/{task_id}
+/api/v1/posts/:id/update
 ```
 
-Body
+Content-Type (multipart/form-data)
 
+Body
 ```json
 {
-  "title": "String",
-  "deadline": "Timestamp",
-  "employee": "Employee_ID",
-  "details": "String"
+  "title": "String (optional)",
+  "description": "String (optional)",
+  "image": "File (optional)",
+  "category": "File (optional)",
 }
 ```
 
 ### Response
 
 <details>
-  <summary>200</summary>
+  <summary>201</summary>
 
 ### Success
 
 ```json
 {
-  "status": 200,
-  "message": "Task updated",
+  "status": 201,
+  "message": "Post Updated",
   "data": {
+    "id": "String",
     "title": "String",
-    "details": "String",
-    "deadline": "Timestamp",
-    "employee": "Employee_ID",
-    "_id": "ID",
+    "description": "String",
+    "category": "String",
+    "imageUrl": "String",
+    "datePosted": "Number",
     "createdAt": "DATE (String)",
     "updatedAt": "DATE (String)"
   }
@@ -702,14 +349,14 @@ Body
 </details>
 
 <details>
-  <summary>404 (Task)</summary>
+  <summary>404</summary>
 
-### Not Found - Task
+### Not Found
 
 ```json
 {
   "status": 404,
-  "message": "Task doesn't exits",
+  "message": "Post does not exist",
   "error": "NOT_FOUND"
 }
 ```
@@ -717,31 +364,18 @@ Body
 </details>
 
 <details>
-  <summary>404 (Employee)</summary>
+  <summary>422</summary>
 
-### Not Found - Employee
-
-```json
-{
-  "status": 404,
-  "message": "Employee doesn't exist",
-  "error": "NOT_FOUND"
-}
-```
-</details>
-
-<details>
-  <summary>409</summary>
-
-### Conflict
+### Validation
 
 ```json
 {
-  "status": 409,
-  "message": "This task is already assigned to this user",
-  "error": "NOT_FOUND"
+  "status": 422,
+  "message": "Validation Error Message",
+  "error": "VALIDATION_ERROR"
 }
 ```
+
 </details>
 
 <details>
@@ -756,16 +390,17 @@ Body
   "error": "SERVER_ERROR"
 }
 ```
+
 </details>
 
 ###
 
-### 10. Remove Task: Delete Request
+### 6. Delete Post: DELETE Request
 
 End Point
 
 ```
-/api/v1/tasks/delete/{task_id}
+/api/v1/posts/:id/delete
 ```
 
 ### Response
@@ -778,10 +413,11 @@ End Point
 ```json
 {
   "status": 200,
-  "message": "Task Deleted",
+  "message": "Post Deleted",
   "data": null
 }
 ```
+
 </details>
 
 <details>
@@ -792,10 +428,11 @@ End Point
 ```json
 {
   "status": 404,
-  "message": "Task doesn't exits",
+  "message": "Post does not exist",
   "error": "NOT_FOUND"
 }
 ```
+
 </details>
 
 <details>
@@ -810,4 +447,5 @@ End Point
   "error": "SERVER_ERROR"
 }
 ```
+
 </details>

@@ -22,7 +22,8 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
-    "typeRoots": ["./node_modules/@types"]
+    "typeRoots": ["./node_modules/@types"],
+    "types": ["node", "express", "multer"]
   },
   "include": ["./src/**/*.ts", "./src/**/*.js"],
   "exclude": ["node_modules"]

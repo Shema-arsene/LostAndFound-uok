@@ -13,7 +13,15 @@ app.use(bodyParser.json());
 app.enable('trust proxy');
 app.use(cors());
 
-app.use('/api/v1', routes);
+app.use('/api', routes);
+
+app.get('/', (_req, res) => {
+  return res
+    .json({
+      message: 'Welcome to the Lost & Found API',
+    })
+    .status(200);
+});
 
 const port = config.PORT || 5000;
 app.listen(port, () => {
